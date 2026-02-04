@@ -1,0 +1,191 @@
+{% extends 'astrology/base.html' %}
+{% block content %}
+
+<style>
+
+/* HEADER */
+.header{
+    text-align:center;
+    padding:60px 20px 30px;
+}
+.header h1{
+    font-size:44px;
+    margin:0;
+    background:linear-gradient(90deg,#ffd6ff,#ffb86b);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+.header p{
+    color:#d8c8ff;
+    margin-top:12px;
+}
+
+/* GRID */
+.grid{
+    max-width:1200px;
+    margin:auto;
+    padding:0 24px 60px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:28px;
+}
+
+/* CARD */
+.card{
+    background:rgba(35,18,60,.65);
+    backdrop-filter:blur(14px);
+    border-radius:22px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.15);
+    box-shadow:0 25px 70px rgba(0,0,0,.8);
+    transition:.35s;
+}
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 40px 100px rgba(0,0,0,.95);
+}
+
+/* IMAGE */
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    display:block;
+    transition:.4s;
+}
+.card:hover img{
+    transform:scale(1.05);
+}
+
+/* CONTENT */
+.card-content{
+    padding:24px;
+}
+.card h3{
+    margin:0 0 12px;
+    color:#ffd6ff;
+    font-size:20px;
+}
+.meta{
+    font-size:12px;
+    color:#caa6ff;
+    margin-bottom:14px;
+}
+.card p{
+    font-size:15px;
+    line-height:1.9;
+    color:#f4edff;
+}
+
+</style>
+
+<div class="header">
+    <h1>Astrology Knowledge Hub</h1>
+    <p>Detailed insights on Nakshatras, Sun & Moon positions, and planetary behavior</p>
+</div>
+
+<div class="grid">
+
+<!-- NAKSHATRA -->
+<div class="card">
+<img loading="lazy" src="https://images.unsplash.com/photo-1502134249126-9f3755a50d78?auto=format&fit=crop&w=1200&q=80" alt="Stars Sky">
+<div class="card-content">
+<h3>Nakshatras — Lunar Constellation Framework</h3>
+<div class="meta">Nakshatra System • Vedic Layer</div>
+<p>
+Nakshatras divide the zodiac into twenty-seven lunar constellations, each ruled by a specific
+planet and symbolic archetype. They reveal subconscious tendencies, instinctive reactions,
+and emotional triggers beyond traditional sun signs. Astrologers use nakshatras for
+compatibility analysis, marriage timing, and psychological insights because the Moon
+activates a new nakshatra almost daily, creating subtle behavioral and emotional shifts.
+</p>
+</div>
+</div>
+
+<!-- SUN -->
+<div class="card">
+<img loading="lazy" src="https://images.unsplash.com/photo-1470115636492-6d2b56f9146d?auto=format&fit=crop&w=1200&q=80" alt="Sun Space">
+<div class="card-content">
+<h3>Sun Position — Identity and Direction</h3>
+<div class="meta">Solar Placement • Authority</div>
+<p>
+The Sun symbolizes core identity, vitality, confidence, and long-term life direction.
+Its placement in the birth chart reveals where leadership qualities naturally emerge
+and how recognition is achieved. A strong solar position enhances independence,
+motivation, and clarity of purpose, while weaker placements encourage self-discipline
+and internal growth. Solar transits influence yearly ambition cycles and career visibility.
+</p>
+</div>
+</div>
+
+<!-- MOON -->
+<div class="card">
+<img loading="lazy" src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1200&q=80" alt="Moon Night">
+<div class="card-content">
+<h3>Moon Position — Emotional Engine</h3>
+<div class="meta">Lunar Placement • Mind</div>
+<p>
+The Moon governs emotional patterns, subconscious memory, and comfort zones.
+It describes how individuals react under pressure, nurture relationships,
+and process feelings internally. Because the Moon changes zodiac signs quickly,
+its transits generate short emotional cycles influencing mood, intuition,
+and decision timing. Understanding lunar placement improves emotional awareness
+and interpersonal communication in everyday life.
+</p>
+</div>
+</div>
+
+<!-- HOUSES -->
+<div class="card">
+<img loading="lazy" src="https://images.unsplash.com/photo-1543722530-d2c3201371e7?auto=format&fit=crop&w=1200&q=80" alt="Planets Orbit">
+<div class="card-content">
+<h3>Moon in Houses — Emotional Focus Area</h3>
+<div class="meta">House Astrology • Behavior Zone</div>
+<p>
+When the Moon occupies a specific house, it highlights where emotional energy
+and attachment are strongest. For example, Moon in the fourth house emphasizes
+home and family, while Moon in the tenth influences public image and career
+sensitivity. This placement reveals instinctive priorities, nurturing style,
+and comfort environments, helping astrologers interpret emotional resilience
+and long-term satisfaction patterns.
+</p>
+</div>
+</div>
+
+<!-- COMPATIBILITY -->
+<div class="card">
+<img loading="lazy" src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=80" alt="Zodiac Wheel">
+<div class="card-content">
+<h3>Nakshatra Compatibility — Matching Logic</h3>
+<div class="meta">Relationship Layer</div>
+<p>
+Nakshatra compatibility evaluates emotional rhythm and subconscious alignment
+between two individuals. Unlike basic zodiac comparison, this method studies
+instinctive behavior, communication patterns, and psychological comfort.
+It helps identify harmony zones, conflict triggers, and long-term relational
+stability, making it a crucial component in Vedic matchmaking and partnership
+analysis.
+</p>
+</div>
+</div>
+
+<!-- TRANSITS -->
+<div class="card">
+<img loading="lazy" src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1200&q=80" alt="Galaxy Universe">
+<div class="card-content">
+<h3>Planetary Transits — Timing Signals</h3>
+<div class="meta">Transit System</div>
+<p>
+Planetary transits represent the real-time movement of celestial bodies relative
+to birth chart positions. These movements act as timing signals indicating
+periods of opportunity, pressure, transformation, or recovery. Slow-moving
+planets such as Saturn and Jupiter shape long-term life themes, while faster
+planets trigger short-term emotional and situational changes, making transit
+analysis one of the most powerful predictive tools in astrology.
+</p>
+</div>
+</div>
+
+</div>
+
+{% endblock %}
