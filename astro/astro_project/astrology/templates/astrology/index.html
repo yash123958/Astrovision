@@ -1,0 +1,376 @@
+{% extends 'astrology/base.html' %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AstroVision Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+/* ===== RESET ===== */
+*{box-sizing:border-box}
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    color:white;
+    background:
+        radial-gradient(circle at 15% 15%, #5b21b6, transparent 35%),
+        radial-gradient(circle at 85% 0%, #9333ea, transparent 30%),
+        linear-gradient(180deg,#0b0615,#140a26 60%,#0b0615);
+}
+
+/* ================= NAVBAR ================= */
+#navbar{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    transition:.3s;
+    background:rgba(10,6,20,.55);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+#navbar.scrolled{
+    background:rgba(10,6,20,.92);
+    box-shadow:0 10px 30px rgba(0,0,0,.6);
+}
+
+.nav-inner{
+    max-width:1300px;
+    margin:auto;
+    padding:16px 36px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.nav-logo{
+    font-weight:800;
+    font-size:20px;
+    background:linear-gradient(90deg,#f5d0fe,#fde68a);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.nav-links{
+    display:flex;
+    gap:26px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    font-size:14px;
+    color:#d8c8ff;
+    position:relative;
+}
+
+.nav-links a:after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-6px;
+    width:0;
+    height:2px;
+    background:#ec4899;
+    transition:.25s;
+}
+
+.nav-links a:hover:after{
+    width:100%;
+}
+
+/* ================= PAGE ================= */
+.page{
+    max-width:1300px;
+    margin:auto;
+    padding:60px 40px;
+}
+
+/* ================= HEADER ================= */
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:40px;
+}
+
+.title h1{
+    margin:0;
+    font-size:42px;
+    font-weight:800;
+    background:linear-gradient(90deg,#f5d0fe,#fde68a);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.title p{
+    margin-top:10px;
+    color:#d8c8ff;
+}
+
+/* BADGES */
+.badges{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.badge{
+    padding:8px 14px;
+    border-radius:999px;
+    font-size:12px;
+    background:rgba(255,255,255,.10);
+    border:1px solid rgba(255,255,255,.18);
+    backdrop-filter:blur(8px);
+}
+
+/* ================= GRID ================= */
+.grid{
+    display:grid;
+    grid-template-columns:1fr 460px;
+    gap:36px;
+}
+
+/* ================= INFO PANEL ================= */
+.info{
+    padding:36px;
+    border-radius:24px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.14);
+    backdrop-filter:blur(16px);
+    box-shadow:0 30px 80px rgba(0,0,0,.55);
+}
+
+.info h2{
+    margin-top:0;
+    color:#f5d0fe;
+}
+
+.info p{
+    line-height:1.9;
+    color:#efe6ff;
+}
+
+.features{
+    margin-top:24px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+}
+
+.feature{
+    padding:14px 16px;
+    border-radius:14px;
+    background:rgba(0,0,0,.25);
+    border:1px solid rgba(255,255,255,.12);
+    font-size:14px;
+}
+
+/* ================= FORM ================= */
+.form{
+    padding:36px;
+    border-radius:24px;
+    background:linear-gradient(180deg,#ffffff,#f3e8ff);
+    color:#2b0f3a;
+    box-shadow:0 30px 90px rgba(0,0,0,.45);
+}
+
+.form h3{
+    margin-top:0;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    font-size:13px;
+    font-weight:600;
+    display:block;
+    margin-bottom:6px;
+}
+
+.form-group input{
+    width:100%;
+    padding:14px;
+    border-radius:12px;
+    border:1px solid #ddd;
+}
+
+.form-group input:focus{
+    outline:none;
+    border-color:#9333ea;
+    box-shadow:0 0 0 3px #9333ea22;
+}
+
+.btn{
+    width:100%;
+    padding:15px;
+    border-radius:14px;
+    border:none;
+    font-size:15px;
+    font-weight:700;
+    color:white;
+    cursor:pointer;
+    background:linear-gradient(135deg,#7c3aed,#ec4899);
+    box-shadow:0 20px 60px rgba(124,58,237,.55);
+}
+
+/* ================= THOUGHT ================= */
+.thought{
+    margin-top:36px;
+    padding:22px 28px;
+    border-radius:18px;
+    background:linear-gradient(90deg,#7c3aed,#ec4899);
+    font-size:16px;
+    line-height:1.8;
+    box-shadow:0 25px 70px rgba(124,58,237,.6);
+}
+
+/* ================= FOOTER ================= */
+.footer{
+    margin-top:80px;
+    padding:48px 20px;
+    text-align:center;
+    background:rgba(0,0,0,.35);
+    border-top:1px solid rgba(255,255,255,.08);
+    backdrop-filter:blur(12px);
+}
+
+.footer h3{
+    margin:0 0 12px;
+    color:#f5d0fe;
+}
+
+.footer p{
+    color:#c4b5fd;
+    font-size:14px;
+}
+
+.footer-links{
+    margin-top:16px;
+    display:flex;
+    justify-content:center;
+    gap:22px;
+    flex-wrap:wrap;
+}
+
+.footer-links a{
+    color:#a78bfa;
+    text-decoration:none;
+    font-size:13px;
+}
+
+/* ================= MOBILE ================= */
+@media(max-width:900px){
+    .page{padding:40px 20px;}
+    .grid{grid-template-columns:1fr;}
+    .features{grid-template-columns:1fr;}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ===== DASHBOARD CONTENT ===== -->
+<div class="page">
+
+    <div class="header">
+        <div class="title">
+            <h1>Welcome 🔮</h1>
+            <p>Generate structured astrology insights from your birth data</p>
+        </div>
+
+        <div class="badges">
+            <div class="badge">📅 Live</div>
+            <div class="badge">⚡ Instant</div>
+            <div class="badge">🔒 Private</div>
+        </div>
+
+    </div>
+    <div class="thought">
+            <strong>Thought of the Day:</strong>
+            <span id="thoughtText"></span>
+    </div>
+    <br>
+    <br>
+
+    <div class="grid">
+
+        <div class="info">
+            <h2>Instant Astrology Reading</h2>
+            <p>
+                Enter your birth details to receive a structured zodiac interpretation.
+                The engine applies rule-based astrology mapping to produce personality,
+                behavioral tendencies, and timing indicators in a clean readable format.
+            </p>
+
+            <div class="features">
+                <div class="feature">✔ Date-range sign detection</div>
+                <div class="feature">✔ Time-band logic</div>
+                <div class="feature">✔ Structured output</div>
+                <div class="feature">✔ Beginner friendly</div>
+            </div>
+        </div>
+
+
+        <div class="form">
+            <h3>Start Your Reading</h3>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Birth Date</label>
+                    <input type="date" name="birth_date" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Birth Time</label>
+                    <input type="time" name="birth_time" required>
+                </div>
+
+                <button class="btn">Generate Prediction</button>
+            </form>
+        </div>
+
+    </div>
+
+    
+
+</div>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+window.addEventListener("scroll", function(){
+    const nav = document.getElementById("navbar");
+    nav.classList.toggle("scrolled", window.scrollY > 40);
+});
+
+const thoughts = [
+"Stars suggest direction — discipline creates destiny.",
+"Cosmic timing rewards preparation.",
+"Patterns guide awareness — action creates results.",
+"Energy flows where focus goes."
+];
+
+document.getElementById("thoughtText").innerText =
+thoughts[Math.floor(Math.random()*thoughts.length)];
+</script>
+
+</body>
+</html>
+
+{% endblock %}

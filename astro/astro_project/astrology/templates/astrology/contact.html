@@ -1,0 +1,154 @@
+{% extends 'astrology/base.html' %}
+{% block content %}
+
+<style>
+/* RESET CONTAINER */
+.container{
+    max-width:100% !important;
+    background:none;
+    box-shadow:none;
+    padding:0;
+}
+
+/* PAGE HEADER */
+.contact-header{
+    text-align:center;
+    margin:40px 0 30px;
+}
+.contact-header h2{
+    font-size:42px;
+    color:#ffd6ff;
+    letter-spacing:1px;
+}
+.contact-header p{
+    color:#d9b8ff;
+    font-size:16px;
+    opacity:.9;
+}
+
+/* LAYOUT */
+.contact-wrapper{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    max-width:1100px;
+    margin:0 auto 60px;
+    padding:0 40px;
+}
+
+/* INFO CARD */
+.contact-info{
+    background:linear-gradient(180deg,#3a1b63,#160a2a);
+    border-radius:30px;
+    padding:40px;
+    box-shadow:0 35px 90px rgba(0,0,0,.8);
+}
+.contact-info h3{
+    color:#ffd6ff;
+    margin-bottom:18px;
+}
+.contact-info p{
+    color:#f6ecff;
+    line-height:1.8;
+    margin-bottom:14px;
+    font-size:15.5px;
+}
+.contact-info .item{
+    margin-top:16px;
+    color:#d9b8ff;
+    font-size:15px;
+}
+
+/* FORM CARD */
+.contact-form{
+    background:linear-gradient(180deg,#3a1b63,#160a2a);
+    border-radius:30px;
+    padding:40px;
+    box-shadow:0 35px 90px rgba(0,0,0,.8);
+}
+.contact-form h3{
+    color:#ffd6ff;
+    margin-bottom:20px;
+}
+
+.contact-form input,
+.contact-form textarea{
+    width:100%;
+    padding:14px 16px;
+    margin-bottom:16px;
+    border-radius:14px;
+    border:none;
+    font-size:15px;
+    outline:none;
+}
+
+.contact-form textarea{
+    resize:none;
+    height:120px;
+}
+
+.contact-form button{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:16px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    background:linear-gradient(135deg,#ff5fa2,#7a3cff);
+    color:white;
+    box-shadow:0 12px 30px rgba(0,0,0,.6);
+    transition:.25s;
+}
+.contact-form button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 18px 40px rgba(0,0,0,.8);
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+    .contact-wrapper{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+
+<!-- HEADER -->
+<div class="contact-header">
+    <h2>📩 Contact Us</h2>
+    <p>We’re here to guide you on your cosmic journey</p>
+</div>
+
+<!-- CONTENT -->
+<div class="contact-wrapper">
+
+    <!-- LEFT INFO -->
+    <div class="contact-info">
+        <h3>🌟 Get in Touch</h3>
+        <p>
+            At <strong>AstroVision</strong>, we believe astrology is a powerful tool for
+            understanding life, emotions, and destiny.  
+            If you have questions, suggestions, or need guidance — feel free to reach out.
+        </p>
+
+        <div class="item">📧 Email: support@astrovision.com</div>
+        <div class="item">📞 Phone: +91 98765 43210</div>
+        <div class="item">📍 Location: India</div>
+        <div class="item">⏰ Support: Mon – Sat (10 AM – 7 PM)</div>
+    </div>
+
+    <!-- RIGHT FORM -->
+    <div class="contact-form">
+        <h3>🪐 Send a Message</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Write your message..." required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}
