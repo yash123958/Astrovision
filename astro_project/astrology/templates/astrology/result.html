@@ -1,0 +1,142 @@
+{% extends 'astrology/base.html' %}
+{% block content %}
+
+<style>
+
+.result-wrapper{
+    min-height:85vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* MAIN CARD */
+.result-card{
+    width:100%;
+    max-width:680px;
+    padding:48px;
+    border-radius:28px;
+    background:rgba(25,20,45,.55);
+    backdrop-filter:blur(22px);
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:
+        0 40px 120px rgba(0,0,0,.85),
+        inset 0 0 0 1px rgba(255,255,255,.04);
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+}
+
+/* SOFT GLOW EFFECT */
+.result-card::before{
+    content:"";
+    position:absolute;
+    inset:-60px;
+    background:radial-gradient(circle at top,#9333ea22,transparent 50%);
+    z-index:-1;
+}
+
+/* TITLE */
+.result-title{
+    font-size:32px;
+    margin-bottom:24px;
+    background:linear-gradient(90deg,#f5d0fe,#fde68a,#c084fc);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    font-weight:800;
+}
+
+/* INFO BLOCKS */
+.result-item{
+    margin:18px 0;
+    font-size:16px;
+    color:#e9d5ff;
+    line-height:1.8;
+}
+
+.label{
+    font-weight:700;
+    color:white;
+    letter-spacing:.3px;
+}
+
+/* PREDICTION BOX */
+.prediction-box{
+    margin-top:14px;
+    padding:22px;
+    border-radius:18px;
+    background:linear-gradient(145deg,#1a1530,#0f0f1f);
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.03),
+        0 20px 60px rgba(0,0,0,.7);
+    color:#f4edff;
+    line-height:2;
+    font-size:15.5px;
+    text-align:left;
+}
+
+/* BUTTON */
+.back-btn{
+    display:inline-block;
+    margin-top:32px;
+    padding:14px 32px;
+    border-radius:18px;
+    text-decoration:none;
+    font-weight:700;
+    font-size:15px;
+    background:linear-gradient(135deg,#9333ea,#f472b6);
+    color:white;
+    transition:.35s;
+    box-shadow:0 15px 45px rgba(147,51,234,.45);
+}
+
+.back-btn:hover{
+    transform:translateY(-3px) scale(1.03);
+    box-shadow:0 25px 70px rgba(147,51,234,.65);
+}
+
+/* MOBILE */
+@media(max-width:650px){
+    .result-card{
+        padding:32px 24px;
+    }
+    .prediction-box{
+        font-size:14px;
+    }
+}
+
+</style>
+
+<div class="result-wrapper">
+
+    <div class="result-card">
+
+        <div class="result-title">
+            Hello {{ name }} 🔮
+        </div>
+
+        <div class="result-item">
+            <span class="label">Zodiac Sign:</span> {{ zodiac }}
+        </div>
+
+        <div class="result-item">
+            <span class="label">Birth Category:</span> {{ born_time }}
+        </div>
+
+        <div class="result-item">
+            <span class="label">Your Prediction</span>
+            <div class="prediction-box">
+                {{ prediction }}
+            </div>
+        </div>
+
+        <a href="{% url 'astrology:home' %}" class="back-btn">
+            🔁 Check Again
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

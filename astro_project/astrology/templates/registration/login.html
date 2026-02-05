@@ -1,0 +1,121 @@
+{% extends "astrology/base.html" %}
+{% block content %}
+
+<style>
+
+.login-wrapper{
+    min-height:80vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.login-card{
+    width:100%;
+    max-width:420px;
+    padding:40px;
+    border-radius:24px;
+    background:rgba(30,15,60,.55);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.15);
+    box-shadow:0 30px 80px rgba(0,0,0,.6);
+}
+
+.login-card h2{
+    text-align:center;
+    margin-bottom:24px;
+    background:linear-gradient(90deg,#f5d0fe,#fde68a);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.login-card label{
+    font-size:13px;
+    color:#e9d5ff;
+}
+
+.login-card input{
+    width:100%;
+    padding:14px;
+    margin-top:6px;
+    margin-bottom:18px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,.2);
+    background:rgba(255,255,255,.08);
+    color:white;
+    font-size:14px;
+    outline:none;
+}
+
+.login-card input:focus{
+    border-color:#c084fc;
+    box-shadow:0 0 0 3px rgba(192,132,252,.25);
+}
+
+.login-btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:16px;
+    font-weight:700;
+    font-size:15px;
+    background:linear-gradient(135deg,#9333ea,#f472b6);
+    color:white;
+    cursor:pointer;
+    margin-top:6px;
+    transition:.3s;
+}
+
+.login-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 15px 40px rgba(147,51,234,.5);
+}
+
+.login-footer{
+    text-align:center;
+    margin-top:18px;
+    font-size:13px;
+    color:#c4b5fd;
+}
+
+.login-footer a{
+    color:#f5d0fe;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.errorlist{
+    color:#fda4af;
+    font-size:12px;
+    margin-bottom:10px;
+}
+
+</style>
+
+<div class="login-wrapper">
+
+    <div class="login-card">
+        <h2>Welcome Back 🔮</h2>
+
+        <form method="post">
+            {% csrf_token %}
+
+            {{ form.username.label_tag }}
+            {{ form.username }}
+
+            {{ form.password.label_tag }}
+            {{ form.password }}
+
+            <button class="login-btn">Login</button>
+        </form>
+
+        <div class="login-footer">
+            Don’t have an account?
+            <a href="/signup/">Create Account</a>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+
